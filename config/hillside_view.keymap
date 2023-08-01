@@ -6,7 +6,6 @@
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/mouse.h>
 #include "mouse.dtsi"
-#incilde "hillside_view.dtsi"
 #include "helpers.h"
 
 // Left bottom row pinky 2nd column
