@@ -34,8 +34,7 @@
 
 #define QUICK_TAP_MS 175
 
-#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
-   // AS(Q) AS(W) AS(E) AS(R) AS(T) AS(Y) --->  Autoshift applied for QWERTY keys
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro eg. AS(Q) AS(W) AS(E) AS(R) AS(T) AS(Y) --->  Autoshift applied for QWERTY keys
 
 &sk {
   release-after-ms = <600>;
@@ -55,17 +54,8 @@
     };
   };
 
-  combos {
-    compatible = "zmk,combos";
-    caps {
-      timeout-ms = <50>;
-      key-positions = <LB5 RB5>;
-      bindings = <&caps_word>;
-    };
-  };
-
   behaviors {
-     as: auto_shift {
+    as: auto_shift {
                 compatible = "zmk,behavior-hold-tap";
                 label = "AUTO_SHIFT";
                 #binding-cells = <2>;
@@ -74,38 +64,20 @@
                 flavor = "tap-preferred";
                 bindings = <&kp>, <&kp>;
             };
-     td0: tap_dance_0 {
+    td0: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_1";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp LPAR>, <&kp LBKT>, <&kp LBRC>;
-        };
-     td1: tap_dance_0 {
+       };
+    td1: tap_dance_0 {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_2";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
             bindings = <&kp RPAR>, <&kp RBKT>, <&kp RBRC>;
         };
-    lt_qk: layer_toggle_quick {
-      compatible = "zmk,behavior-hold-tap";
-      label = "LAYER_TOGGLE_QUICK";
-      #binding-cells = <2>;
-      flavor = "tap-preferred";
-      tapping-term-ms = <150>;
-      quick-tap-ms = <QUICK_TAP_MS>;
-      bindings = <&mo>, <&kp>;
-    };
-    mt_sk: mod_tap_sticky {
-      compatible = "zmk,behavior-hold-tap";
-      label = "MOD_TAP_STICKY";
-      #binding-cells = <2>;
-      flavor = "tap-preferred";
-      tapping-term-ms = <150>;
-      quick-tap-ms = <200>;
-      bindings = <&sk>, <&kp>;
-    };
     ht: hold_tap {
       compatible = "zmk,behavior-hold-tap";
       label = "HOLD_TAP";
@@ -115,43 +87,28 @@
       flavor = "tap-preferred";
       bindings = <&kp>, <&kp>;
     };
-    lswp: lswp { \
-        label = "SWAP"; \
-        compatible = "zmk,behavior-tap-dance"; \
-        #binding-cells = <0>; \
-        tapping-term-ms = <200>; \
-        bindings = <&sk LGUI>, <&tog SWP>; \
-    }; \
-  };
-
-  keymap {
+    
+    keymap {
     compatible = "zmk,keymap";
     default_layer {
       label = "DEFAULT";
-      bindings = <LAYOUT_wrapper(DEFAULT_LAYOUT)>;
+      bindings = <
+                     //TO DO: L encoder for scroll
+
+      // ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮                                 ╭──────────┬──────────┬──────────┬──────────┬──────────┬──────────╮
+            &kp TAB     AS(Q)       AS(W)      AS(E)     AS(R)      AS(T)                                        AS(Y)      AS(U)      AS(I)       AS(O)    AS(P)  &kp KP_ASTERISK 
+      // ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤                                 ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+           &kp ESC      AS(A)      AS(S)       AS(D)     AS(F)      AS(G)                                        AS(H)      AS(J)      AS(K)       AS(L)    AS(SEMI)   AS(SQT)    
+      // ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤  ╭───────────╮    ╭───────────╮ ├──────────┼──────────┼──────────┼──────────┼──────────┼──────────┤
+           &kp LSHFT    AS(Z)      AS(X)       AS(C)     AS(V)      AS(B)                                        AS(N)      AS(M)      AS(COMMA)   AS(DOT)  AS(FSLH)   &kp ENTER    
+                                                                                  ___         &kp C_PLAY_PAUSE                                                                                           
+      // ╰──────────┴──────────┼──────────┼──────────┼──────────┼──────────┤  ╰───────────╯    ╰───────────╯ ├──────────┼──────────┼──────────┼──────────┼──────────┴─────────╯   
+                               &kp LCTRL    &kp LGUI   &kp SPACE   &kp LOWER                                &kp RAISE  &kp BACKSPACE  &mkp MB3  &mkp RCLK 
+      //                       ╰──────────┴──────────┴──────────┴───────────╯                                ╰──────────┴──────────┴──────────┴──────────╯                             
+      >;
+      // Bindings for encoders, if you don't have encoders you can remove this line from all layers. If you leave it here it won't affect your keymap.
       sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp C_VOL_UP C_VOL_DN>;
     };
-
-
-
-   
-// This is the default layout. It's defined as a macro to allow easily create a swap layer.
-//TO DO: L encoder for scroll
-#define DEFAULT_LAYOUT \
-      /* ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬─────────────╮                                      ╭─────────────┬─────────────┬─────────────┬─────────────┬─────────────┬────────────╮   */ \
-           &kp TAB,    AS(Q),        AS(W),        AS(E),        AS(R),           AS(T),                                                  AS(Y),       AS(U),        AS(I),        AS(O),        AS(P),     &kp KP_ASTERISK         \
-      /* ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤                                      ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   */ \
-           &kp ESC,          AS(A),        AS(S),        AS(D),        AS(F),       AS(G),                                               AS(H),        AS(J),        AS(K),        AS(L),        AS(SEMI),    AS(SQT),         \
-      /* ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ╭─────────────╮     ╭─────────────╮ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┼────────────┤   */ \
-           &kp LSHFT,        AS(Z),       AS(X),        AS(C),         AS(V),        AS(B),                                             AS(N),        AS(M),       AS(COMMA),    AS(DOT),     AS(FSLH),    &kp ENTER,      \
-                                                                                                       ___,         &kp C_PLAY_PAUSE,                                                                                            \
-      /* ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ╰─────────────╯     ╰─────────────╯ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┴────────────╯   */ \
-                                         &kp LCTRL,    &kp LGUI,   &kp SPACE,   &kp LOWER,                                              &kp RAISE,   &kp BACKSPACE,    &mkp MB3,  &mkp RCLK, 
-      /*                             ╰─────────────┴─────────────┴─────────────┴─────────────╯                                      ╰─────────────┴─────────────┴─────────────┴─────────────╯                              */
-
- 
-
-
 
     lower_layer {
       label = "LOWER";
@@ -168,8 +125,6 @@
       //                             ╰─────────────┴─────────────┴─────────────┴─────────────╯                                      ╰─────────────┴─────────────┴────────────┴─────────────╯
       >;
     };
-
-
 
     raise_layer {
       label = "RAISE";
@@ -188,8 +143,6 @@
       sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp F18 F17>;
     };
 
-
-   */
     adj_layer {
       label = "ADJUST";
       bindings = <
