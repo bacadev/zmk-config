@@ -34,7 +34,8 @@
 
 #define QUICK_TAP_MS 175
 
-#define AS(keycode) &as LS(keycode) keycode
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+   // AS(Q) AS(W) AS(E) AS(R) AS(T) AS(Y) --->  Autoshift applied for QWERTY keys
 
 &sk {
   release-after-ms = <600>;
