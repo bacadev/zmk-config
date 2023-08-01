@@ -71,7 +71,7 @@
             tapping-term-ms = <200>;
             bindings = <&kp LPAR>, <&kp LBKT>, <&kp LBRC>;
        };
-    td1: tap_dance_0 {
+    td1: tap_dance_1 {
             compatible = "zmk,behavior-tap-dance";
             label = "TAP_DANCE_2";
             #binding-cells = <0>;
