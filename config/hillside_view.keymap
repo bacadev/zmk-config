@@ -103,7 +103,7 @@
             &kp LSHFT    AS(Z)      AS(X)       AS(C)     AS(V)      AS(B)                                        AS(N)      AS(M)      AS(COMMA)   AS(DOT)  AS(FSLH)  &mt RSHFT RET    
                                                                                   ___         &kp C_PLAY_PAUSE                                                                                           
       // ╰──────────┴──────────┼──────────┼──────────┼──────────┼──────────┤  ╰───────────╯    ╰───────────╯ ├──────────┼──────────┼──────────┼──────────┼──────────┴─────────╯   
-                                &kp LCTRL    &kp LGUI   &kp SPACE   &kp LOWER                                &kp RAISE  &kp BSPC  &mkp MB3  &mkp RCLK 
+                                &kp LCTRL    &kp LGUI   &kp SPACE   &kp LOWER                                &kp RAISE  &kp BSPC  &mkp MCLK  &mkp RCLK 
       //                       ╰──────────┴──────────┴──────────┴───────────╯                                ╰──────────┴──────────┴──────────┴──────────╯                             
       >;
       // Bindings for encoders, if you don't have encoders you can remove this line from all layers. If you leave it here it won't affect your keymap.
@@ -121,7 +121,7 @@
             &kp LSHIFT   &kp N6        &kp N7         &kp N8       &kp N9         XXX                                                 XXX           &kp N2       &kp N3       &kp N4        &kp N5     &kp BACKSLASH 
                                                                                                       &trans              &trans   
       // ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ╰─────────────╯     ╰─────────────╯ ├─────────────┼─────────────┼────────────┼─────────────┼─────────────┴────────────╯
-                                &kp LCTRL      &kp LGUI      &kp SPACE        ___                                                  ___      &kp BSPC    &mkp MB3   &mkp RCLK   
+                                &kp LCTRL      &kp LGUI      &kp SPACE        ___                                                  ___      &kp BSPC    &mkp MCLK   &mkp RCLK   
       //                             ╰─────────────┴─────────────┴─────────────┴─────────────╯                                      ╰─────────────┴─────────────┴────────────┴─────────────╯
       >;
     };
@@ -137,7 +137,7 @@
             &kp LSHIFT        ___            ___            ___           ___          ___                                                ___         &kp C_PREV     &kp C_NEXT      ___          ___            ___      
                                                                                                       &trans              &trans                                                                                      
       // ╰─────────────┴─────────────┼─────────────┼─────────────┼─────────────┼─────────────┤  ╰─────────────╯     ╰─────────────╯ ├─────────────┼─────────────┼─────────────┼─────────────┼─────────────┴────────────╯
-                                        &kp LCTRL      &kp LGUI      &kp SPACE     &trans                                            &trans        &kp BSPC   &mkp MB3   &mkp RCLK     
+                                        &kp LCTRL      &kp LGUI      &kp SPACE     &trans                                            &trans        &kp BSPC   &mkp MCLK   &mkp RCLK     
       //                             ╰─────────────┴─────────────┴─────────────┴─────────────╯                                      ╰─────────────┴─────────────┴─────────────┴─────────────╯
       >;
       sensor-bindings = <&inc_dec_kp C_NEXT C_PREV &inc_dec_kp F18 F17>;
