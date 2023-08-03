@@ -61,6 +61,11 @@
     tapping-term-ms = <400>;
 };
 
+&lt {
+    flavor = "balanced";
+    tapping-term-ms = <150>;
+};
+
 / {
   conditional_layers {
     compatible = "zmk,conditional-layers";
