@@ -5,7 +5,7 @@ manifest:
   projects:
     - name: zmk
       remote: urob
-      revision: c957348e6187ffde3c073e8c367a60a7ee16b12c
+      revision: 147f7f23dca7a2eb5d7433d399948cfd51e068a9
       import: app/west.yml
   self:
     path: config
